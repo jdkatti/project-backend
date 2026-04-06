@@ -128,7 +128,8 @@ src/
 * POST /api/transactions → Create
 * GET /api/transactions → List (pagination and filters)
 * PUT /api/transactions/:id → Update
-* DELETE /api/transactions/:id → Soft delete
+* DELETE /api/transactions/:id → Soft delete (Admin only)
+* PUT /api/transactions/restore/:id → Restore a soft-deleted transaction (Admin only)
 
 ### Dashboard
 
