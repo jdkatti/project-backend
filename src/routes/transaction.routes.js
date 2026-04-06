@@ -15,4 +15,6 @@ router.delete("/:id", auth, role("ADMIN"), ctrl.deleteTransaction);
 
 router.get("/", auth, role("ADMIN", "ANALYST", "VIEWER"), ctrl.getTransactions);
 
+router.put("/restore/:id", auth, role("ADMIN"), ctrl.restoreTransaction);
+
 module.exports = router;

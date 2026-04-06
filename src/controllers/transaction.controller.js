@@ -180,3 +180,30 @@ exports.deleteTransaction = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.restoreTransaction = async (req, res) => {
+  try {
+    // Find the transaction first
+    const txn = await Transaction.findById(req.params.id);
+
+    if (!txn || !txn.isDeleted) {
+      return res.status(404).json({
+        success: false,
+        message: "Transaction not found or not deleted"
+      });
+    }
+
+    // Restore the transaction
+    txn.isDeleted = false;
+    await txn.save();
+
+    res.json({
+      success: true,
+      message: "Transaction restored successfully",
+      data: txn
+    });
+
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
